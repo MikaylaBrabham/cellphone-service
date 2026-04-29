@@ -3,55 +3,70 @@ package com.pluralsight;
 // import scanner
 import java.util.Scanner;
 
-    // created a cellphone application class with a main
+    // created a cellphone application class with a main+
 class CellPhoneApplication {
-     public static void main(String[] args) {
 
-         // insert scanner
-         Scanner scanner = new Scanner(System.in);
+        public static void main(String[] args) {
 
-         // enter CellPhone class
-         CellPhone phone = new CellPhone();
+            //insert scanner
+            Scanner scanner = new Scanner(System.in);
 
-         //use setter cellphone to add values
-         System.out.println("What is the serial number? ");
-         Integer serialNumber = scanner.nextInt();
-         phone.setSerialNumber(serialNumber);
-         scanner.nextLine();
+            //enter both new cellphones
+            CellPhone cellPhone1 = new CellPhone();
+            CellPhone cellPhone2 = new CellPhone();
 
-         System.out.println("What model is the phone? ");
-         String model = scanner.nextLine();
-         phone.setModel(model);
+            // fill phone 1
+            System.out.println("Enter info for phone 1");
+            fillPhone(scanner, cellPhone1);
 
-         System.out.println("Who is the carrier? ");
-         String carrier = scanner.nextLine();
-         phone.setCarrier(carrier);
+            //fill phone 2
+            System.out.println("Enter info for phone 2");
+            fillPhone(scanner, cellPhone2);
 
-         System.out.println(" What is the phone number? ");
-         String phoneNumber = scanner.nextLine();
-         phone.setPhoneNumber(phoneNumber);
+            //display phone 1
+            System.out.println("**** Phone 1 ****");
+            display(cellPhone1);
 
-         System.out.println(" Who is the owner of the phone? ");
-         String owner = scanner.nextLine();
-         phone.setOwner(owner);
+            //display phone 2
+            System.out.println("**** Phone 2 ****");
+            display(cellPhone2);
 
+            cellPhone1.dial(cellPhone2.getPhoneNumber());
+            cellPhone2.dial(cellPhone1.getPhoneNumber());
 
-         // use getter print to screen
-         System.out.println("Serial Number: " + phone.getSerialNumber());
-         System.out.println("Model: " + phone.getModel());
-         System.out.println("Carrier: " + phone.getCarrier());
-         System.out.println("Phone Number: " + phone.getPhoneNumber());
-         System.out.println("Owner: " + phone.getOwner());
+            scanner.close();
+        }
+            //use setter cellphone to add values
+        public static void fillPhone(Scanner scanner, CellPhone phone) {
+            System.out.print("What is the serial number? ");
+            phone.setSerialNumber(scanner.nextInt());
+            scanner.nextLine();
 
+            System.out.println("What model is the phone? ");
+            phone.setModel(scanner.nextLine());
+
+            System.out.println("Who is the carrier? ");
+            phone.setCarrier(scanner.nextLine());
+
+            System.out.println(" What is the phone number? ");
+            phone.setPhoneNumber(scanner.nextLine());
+
+            System.out.println(" Who is the owner of the phone? ");
+            phone.setOwner(scanner.nextLine());
+        }
+            //use getter print to screen
+        public static void display(CellPhone phone) {
+            System.out.println("Serial Number: " + phone.getSerialNumber());
+            System.out.println("Model: " + phone.getModel());
+            System.out.println("Carrier: " + phone.getCarrier());
+            System.out.println("Phone Number: " + phone.getPhoneNumber());
+            System.out.println("Owner: " + phone.getOwner());
 
         }
-
-    }
-
+}
 
     // added cellphone class to instantiate objects in
 class CellPhone {
-
         //add cellphone details needed properties/ data members
     private Integer serialNumber;
     private String model;
@@ -59,64 +74,31 @@ class CellPhone {
     private String phoneNumber;
     private String owner;
 
-
     // added constructor and set to the given values
-    CellPhone(){
+    public CellPhone() {
         this.serialNumber = 0;
         this.model = "";
         this.carrier = "";
         this.phoneNumber = "";
         this.owner = "";
-        }
-
-
-    //insert Getter
-    public Integer getSerialNumber() {
-         return serialNumber;
     }
 
-    public String getModel() {
-         return model;
-    }
+    // add dial method
+        public void dial(String phoneNumber) {System.out.println(owner + "'s phone is calling " + phoneNumber);}
 
-    public String getCarrier() {
-        return carrier;
-    }
-
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public String getOwner() {
-        return owner;
-    }
+    //Getter
+    public Integer getSerialNumber() {return serialNumber;}
+    public String getModel() {return model;}
+    public String getCarrier() {return carrier;}
+    public String getPhoneNumber() {return phoneNumber;}
+    public String getOwner() {return owner;}
 
 
-        //String carrier;
-        //String phoneNumber;
-       // String owner;
-
-
-    // insert setter
-    public void setSerialNumber(Integer serialNumber) {
-        this.serialNumber = serialNumber;
-    }
-
-    public void setModel(String model) {
-        this.model = model;
-    }
-
-    public void setCarrier(String carrier) {
-        this.carrier = carrier;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-         this.phoneNumber = phoneNumber;
-    }
-
-    public void setOwner(String owner) {
-        this.owner = owner;
-    }
-
+    // setter
+    public void setSerialNumber(Integer serialNumber) {this.serialNumber = serialNumber;}
+    public void setModel(String model) {this.model = model;}
+    public void setCarrier(String carrier) {this.carrier = carrier;}
+    public void setPhoneNumber(String phoneNumber) {this.phoneNumber = phoneNumber;}
+    public void setOwner(String owner) {this.owner = owner; }
 }
 
